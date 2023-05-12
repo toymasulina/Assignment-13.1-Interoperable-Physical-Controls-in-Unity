@@ -21,9 +21,14 @@ public class Hand : MonoBehaviour
 
     List<MeshRenderer> m_currentRenderers = new List<MeshRenderer>();
 
+    Collider[] m_colliders = null;
+
+    public bool isCollisionEnabled { get; private set; } = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        m_colliders = GetComponentsInChildren<Collider>().Where(childCollider => !childCollider.isTrigger).ToArray();
         trackedAction.Enable();
         Hide();
     }
@@ -52,6 +57,7 @@ public class Hand : MonoBehaviour
             m_currentRenderers.Add(renderer);
         }
         isHidden = false;
+        EnableCollisions(true);
     }
 
     public void Hide()
@@ -64,5 +70,17 @@ public class Hand : MonoBehaviour
             m_currentRenderers.Add(renderer);
         }
         isHidden = true;
+        EnableCollisions(false);
+    }
+
+    public void EnableCollisions(bool enabled)
+    {
+        if (isCollisionEnabled == enabled) return;
+
+        isCollisionEnabled = enabled;
+        foreach (Collider col in m_colliders)
+        {
+            col.enabled = isCollisionEnabled;
+        }
     }
 }
