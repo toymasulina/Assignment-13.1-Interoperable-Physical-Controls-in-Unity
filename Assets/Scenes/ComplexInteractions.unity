@@ -1617,6 +1617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1133201681}
+  - component: {fileID: 1133201682}
   m_Layer: 0
   m_Name: Right Hand Visual
   m_TagString: Untagged
@@ -1641,6 +1642,36 @@ Transform:
   m_Father: {fileID: 880992871}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1133201682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133201680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ec737a44b3d524a97e8e4344278251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 1
+  trackedAction:
+    m_Name: Tracked
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7e783edb-3264-4a0b-90ce-c956b526ade6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 74b49d2d-71d7-465d-927a-4178237650fa
+      m_Path: <XRController>{RightHand}/isTracked
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Tracked
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1001 &1136686620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1917,6 +1948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2144231602}
+  - component: {fileID: 2144231603}
   m_Layer: 0
   m_Name: Left Hand Visual
   m_TagString: Untagged
@@ -1941,6 +1973,36 @@ Transform:
   m_Father: {fileID: 908115765}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2144231603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144231601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ec737a44b3d524a97e8e4344278251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 0
+  trackedAction:
+    m_Name: Tracked
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9d23f449-3fa5-415e-9b35-1e9720b17908
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 7651a6c7-f94d-4a4e-84a3-531915ff07c2
+      m_Path: <XRController>{LeftHand}/isTracked
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Tracked
+      m_Flags: 0
+    m_Flags: 0
 --- !u!4 &193532314722345684
 Transform:
   m_ObjectHideFlags: 0
