@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 00dd86e19b2f9d24b97ba9e516add307
+guid: 9cb0dbdffcdccee43b6f87a83c598824
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -98,7 +98,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

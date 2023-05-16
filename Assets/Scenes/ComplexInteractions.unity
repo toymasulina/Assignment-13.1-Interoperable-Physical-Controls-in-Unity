@@ -1809,6 +1809,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: l_hand_skeletal_lowres
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 00dd86e19b2f9d24b97ba9e516add307,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e5955e50d1b3dcd4fa677cfe72916f2a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2485,6 +2490,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &854128515 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 00dd86e19b2f9d24b97ba9e516add307,
+    type: 3}
+  m_PrefabInstance: {fileID: 748794070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &877460507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,7 +3278,25 @@ MonoBehaviour:
       m_Action: Tracked
       m_Flags: 0
     m_Flags: 0
-  interactor: {fileID: 0}
+  gripAction:
+    m_Name: Grip
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 19cc5787-f552-44cd-a64f-acdda3513a57
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1f2e3400-a5e4-4674-abe0-e14c39b732be
+      m_Path: <XRController>{RightHand}/grip
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Grip
+      m_Flags: 0
+    m_Flags: 0
+  handAnimator: {fileID: 1136686623}
+  interactor: {fileID: 236222885}
 --- !u!1001 &1136686620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3341,6 +3370,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: r_hand_skeletal_lowres
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 28d4479035943d349a2ada57e733912c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f21c47a4235c9d442890e187c3f33c7d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3459,6 +3493,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &1136686623 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 28d4479035943d349a2ada57e733912c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1136686620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1149281920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3579134075959453388, guid: 00dd86e19b2f9d24b97ba9e516add307,
@@ -5417,7 +5457,25 @@ MonoBehaviour:
       m_Action: Tracked
       m_Flags: 0
     m_Flags: 0
-  interactor: {fileID: 0}
+  gripAction:
+    m_Name: Grip
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f4ef3f98-63f5-49f8-b43b-f138cf469411
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 79c0b6da-8849-4bd5-94e5-d650edd75115
+      m_Path: <XRController>{LeftHand}/grip
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Grip
+      m_Flags: 0
+    m_Flags: 0
+  handAnimator: {fileID: 854128515}
+  interactor: {fileID: 833058124}
 --- !u!4 &193532314722345684
 Transform:
   m_ObjectHideFlags: 0
