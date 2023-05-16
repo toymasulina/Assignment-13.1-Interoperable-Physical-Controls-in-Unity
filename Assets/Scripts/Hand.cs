@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public enum HandType
 {
@@ -18,8 +20,20 @@ public class Hand : MonoBehaviour
     public InputAction trackedAction = null;
 
     bool m_isCurrentlyTracked = false;
-
+    
     List<MeshRenderer> m_currentRenderers = new List<MeshRenderer>();
+
+    //
+
+    public XRBaseInteractor interactor = null;
+
+    private void Awake()
+    {
+        if (interactor == null)
+        {
+            interactor = GetComponentInParent<XRBaseInteractor>();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
