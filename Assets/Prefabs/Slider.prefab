@@ -4599,7 +4599,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9088793607492553661}
-  - component: {fileID: 7102737235555793226}
+  - component: {fileID: 7564366641667589361}
+  - component: {fileID: 6667453521710530805}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -4623,9 +4624,9 @@ Transform:
   - {fileID: 8003462383636264969}
   - {fileID: 5566179488472538692}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7102737235555793226
+--- !u!114 &7564366641667589361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4755,3 +4756,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6667453521710530805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016689502912350244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e59277450911543bee02d4c3893eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideHand: 1

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements.Experimental;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [Serializable]
@@ -24,25 +25,9 @@ public class DragInteractable : XRBaseInteractable
 
     Coroutine m_drag = null;
 
-    [Obsolete]
-    protected override void OnSelectEntered(XRBaseInteractor interactor)
-    {
-        m_interactor = interactor;
-        StartDrag();
-        base.OnSelectEntered(interactor);
-    }
-
-    [Obsolete]
-    protected override void OnSelectExited(XRBaseInteractor interactor)
-    {
-        EndDrag();
-        m_interactor = null;
-        base.OnSelectExited(interactor);
-    }
-
     private void StartDrag()
     {
-        if(m_drag != null)
+        if (m_drag != null)
         {
             StopCoroutine(m_drag);
         }
@@ -64,12 +49,14 @@ public class DragInteractable : XRBaseInteractable
     {
         Vector3 AB = b - a;
         Vector3 AV = value - a;
+        // the dot of a to value divided by the dot of the total range
+        // gives the normalized 0-1 distance of value between a and b
         return Mathf.Clamp01(Vector3.Dot(AV, AB) / Vector3.Dot(AB, AB));
     }
 
     IEnumerator CalculateDrag()
     {
-        while(m_interactor != null)
+        while (m_interactor != null)
         {
             // get a line in local space
             Vector3 line = startDragPosition.localPosition - endDragPosition.localPosition;
@@ -87,5 +74,19 @@ public class DragInteractable : XRBaseInteractable
 
             yield return null;
         }
+    }
+
+    protected override void OnSelectEntered(XRBaseInteractor interactor)
+    {
+        m_interactor = interactor;
+        StartDrag();
+        base.OnSelectEntered(interactor);
+    }
+
+    protected override void OnSelectExited(XRBaseInteractor interactor)
+    {
+        EndDrag();
+        m_interactor = null;
+        base.OnSelectExited(interactor);
     }
 }

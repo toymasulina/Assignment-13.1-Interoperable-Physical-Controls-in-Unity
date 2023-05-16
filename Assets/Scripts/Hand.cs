@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public enum HandType
@@ -14,16 +14,19 @@ public enum HandType
 
 public class Hand : MonoBehaviour
 {
-    public HandType handType = HandType.Left;
+    public HandType HandType = HandType.Left;
+
     public bool isHidden { get; private set; } = false;
 
     public InputAction trackedAction = null;
 
-    bool m_isCurrentlyTracked = false;
-    
-    List<MeshRenderer> m_currentRenderers = new List<MeshRenderer>();
+    private bool _isCurrentlyTracked = false;
 
-    //
+    List<Renderer> _currentRenderers = new List<Renderer>();
+
+    Collider[] _colliders = null;
+
+    public bool isCollisionsEnabled { get; private set; } = false;
 
     public XRBaseInteractor interactor = null;
 
@@ -35,9 +38,22 @@ public class Hand : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        interactor.onSelectEntered.AddListener(OnGrab);
+        interactor.onSelectExited.AddListener(OnRelease);
+    }
+
+    private void OnDisable()
+    {
+        interactor.onSelectEntered.RemoveListener(OnGrab);
+        interactor.onSelectExited.RemoveListener(OnRelease);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        _colliders = GetComponentsInChildren<Collider>().Where(childCollider => !childCollider.isTrigger).ToArray();
         trackedAction.Enable();
         Hide();
     }
@@ -46,37 +62,73 @@ public class Hand : MonoBehaviour
     void Update()
     {
         float isTracked = trackedAction.ReadValue<float>();
-        if (isTracked == 1.0f && !m_isCurrentlyTracked)
+        if (isTracked == 1.0f && !_isCurrentlyTracked)
         {
-            m_isCurrentlyTracked = true;
+            _isCurrentlyTracked = true;
             Show();
         }
-        else if (isTracked == 0 && m_isCurrentlyTracked)
+        else if (isTracked == 0 && _isCurrentlyTracked)
         {
-            m_isCurrentlyTracked = false;
+            _isCurrentlyTracked = false;
             Hide();
         }
     }
 
     public void Show()
     {
-        foreach (MeshRenderer renderer in m_currentRenderers)
+        foreach (Renderer renderer in _currentRenderers)
         {
             renderer.enabled = true;
-            m_currentRenderers.Add(renderer);
         }
         isHidden = false;
+        EnableCollisions(true);
     }
 
     public void Hide()
     {
-        m_currentRenderers.Clear();
-        MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
-        foreach (MeshRenderer renderer in renderers)
+        _currentRenderers.Clear();
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
         {
             renderer.enabled = false;
-            m_currentRenderers.Add(renderer);
+            _currentRenderers.Add(renderer);
         }
         isHidden = true;
+        EnableCollisions(false);
+    }
+
+    public void EnableCollisions(bool enable)
+    {
+        if (isCollisionsEnabled == enable) return;
+
+        isCollisionsEnabled = enable;
+        foreach (Collider collider in _colliders)
+        {
+            collider.enabled = isCollisionsEnabled;
+        }
+    }
+
+    void OnGrab(XRBaseInteractable grabbedObject)
+    {
+        HandControl ctrl = grabbedObject.GetComponent<HandControl>();
+        if (ctrl != null)
+        {
+            if (ctrl.hideHand)
+            {
+                Hide();
+            }
+        }
+    }
+
+    void OnRelease(XRBaseInteractable releasedObject)
+    {
+        HandControl ctrl = releasedObject.GetComponent<HandControl>();
+        if (ctrl != null)
+        {
+            if (ctrl.hideHand)
+            {
+                Show();
+            }
+        }
     }
 }
