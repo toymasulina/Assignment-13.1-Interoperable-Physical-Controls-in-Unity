@@ -56,6 +56,44 @@ public class Hand : MonoBehaviour
         interactor.onSelectExited.RemoveListener(OnRelease);
     }
 
+
+
+    // DAVID'S CODE STARTS HERE
+
+    /*private void OnEnable()
+    {
+        interactor.selectEntered.AddListener(OnSelectEntered);
+        interactor.selectExited.AddListener(OnSelectExited);
+    }
+
+    private void OnDisable()
+    {
+        interactor.selectEntered.RemoveListener(OnSelectEntered);
+        interactor.selectExited.RemoveListener(OnSelectExited);
+    }
+
+    private void OnSelectExited(SelectExitEventArgs arg0)
+    {
+        var handControl = arg0.interactableObject.transform.GetComponent<HandControl>();
+        if (handControl != null)
+        {
+            Show();
+        }
+    }
+
+    private void OnSelectEntered(SelectEnterEventArgs arg0)
+    {
+        var handControl = arg0.interactableObject.transform.GetComponent<HandControl>();
+        if (handControl != null)
+        {
+            Hide();
+        }
+    }*/
+
+    // DAVID'S CODE ENDS HERE
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,8 +112,7 @@ public class Hand : MonoBehaviour
         handAnimator.SetFloat(_pointAmountParameter, pointAmount);
 
         float gripAmount = gripAction.ReadValue<float>();
-        handAnimator.SetFloat(_gripAmountParameter, gripAmount);
-        //handAnimator.SetFloat(_gripAmountParameter, Mathf.Clamp01(gripAmount + pointAmount));
+        handAnimator.SetFloat(_gripAmountParameter, Mathf.Clamp01(gripAmount + pointAmount));
     }
 
     // Update is called once per frame
