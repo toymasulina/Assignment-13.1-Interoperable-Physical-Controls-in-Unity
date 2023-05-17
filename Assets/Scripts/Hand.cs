@@ -21,8 +21,10 @@ public class Hand : MonoBehaviour
     public InputAction trackedAction = null;
 
     public InputAction gripAction = null;
+    public InputAction triggerAction = null;
     public Animator handAnimator = null;
-    int _gripAmountParamter = 0;
+    int _gripAmountParameter = 0;
+    int _pointAmountParameter = 0;
 
     private bool _isCurrentlyTracked = false;
 
@@ -59,15 +61,21 @@ public class Hand : MonoBehaviour
     {
         _colliders = GetComponentsInChildren<Collider>().Where(childCollider => !childCollider.isTrigger).ToArray();
         trackedAction.Enable();
-        _gripAmountParamter = Animator.StringToHash("GripAmount");
+        _gripAmountParameter = Animator.StringToHash("GripAmount");
+        _pointAmountParameter = Animator.StringToHash("PointAmount");
         gripAction.Enable();
+        triggerAction.Enable();
         Hide();
     }
 
     void UpdateAnimations()
     {
+        float pointAmount = triggerAction.ReadValue<float>();
+        handAnimator.SetFloat(_pointAmountParameter, pointAmount);
+
         float gripAmount = gripAction.ReadValue<float>();
-        handAnimator.SetFloat(_gripAmountParamter, gripAmount);
+        handAnimator.SetFloat(_gripAmountParameter, gripAmount);
+        //handAnimator.SetFloat(_gripAmountParameter, Mathf.Clamp01(gripAmount + pointAmount));
     }
 
     // Update is called once per frame
